@@ -5,7 +5,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Transient;
+import javax.validation.constraints.Min;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
 //tells spring that the fields here must persist in a db table
@@ -14,12 +16,18 @@ public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)  // Automatically go 1 then 2 then 3 ...
 	private String productId;
+	
+	@NotEmpty (message = "Please specify a product name.")
 	private String productName;
 	private String productCategory;
 	private String productDescription;
+	
+	@Min(value = 0, message = "Please specify a non negative price.")
 	private double productPrice;
 	private String productCondition;
 	private String productStatus;
+	
+	@Min(value = 0, message = "Please specify a non negative price.")
 	private int unitInStock;
 	private String productManufacturer;
 	

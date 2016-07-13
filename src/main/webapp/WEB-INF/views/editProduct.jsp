@@ -15,6 +15,7 @@
 			<form:form action="${pageContext.request.contextPath }/admin/productInventory/editProduct" method="post" commandName="product" enctype="multipart/form-data">
 				<form:hidden path="productId" value="${product.productId}"/>
 				<div class="form-group">
+					<form:errors path="productName" cssStyle="color:#ff0000;" />
 					<label for="name">Name</label>
 					<form:input path="productName" id="name" class="form-Control" value="${product.productName }"/>
 				</div>

@@ -14,6 +14,7 @@
 				<form:hidden path="productId" value="${product.productId}"/>
 				<div class="form-group">
 					<label for="name">Name</label>
+					<form:errors path="productName" cssStyle="color:#ff0000;" />
 					<form:input path="productName" id="name" class="form-Control"/>
 				</div>
 				
@@ -33,6 +34,7 @@
 				
 				<div class="form-group">
 					<label for="price">Price</label>
+					<form:errors path="productPrice" cssStyle="color:#ff0000;" />
 					<form:input path="productPrice" id="price" class="form-Control"/>
 				</div>
 				
@@ -56,6 +58,7 @@
 				
 				<div class="form-group">
 					<label for="unitInStock">Unit in Stock</label>
+					<form:errors path="unitInStock" cssStyle="color:#ff0000;" />
 					<form:input path="unitInStock" id="unitInStock" class="form-Control"/>
 				</div>
 				
