@@ -11,7 +11,7 @@
 				
 				<p class="lead">Fill the information to add a product</p>
 			<form:form action="${pageContext.request.contextPath}/admin/productInventory/addProduct" method="post" commandName="product" enctype="multipart/form-data">
-				<form:hidden path="productId" value="${product.productId}"/>
+				
 				<div class="form-group">
 					<label for="name">Name</label>
 					<form:errors path="productName" cssStyle="color:#ff0000;" />
