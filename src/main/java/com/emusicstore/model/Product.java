@@ -1,18 +1,32 @@
 package com.emusicstore.model;
 
+import java.io.Serializable;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 //tells spring that the fields here must persist in a db table
 @Entity
-public class Product {
+public class Product implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3532377236419382983L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)  // Automatically go 1 then 2 then 3 ...
 	private String productId;
@@ -34,6 +48,12 @@ public class Product {
 	@Transient
 	private MultipartFile productImage;
 	
+	
+	//need to skip Json serialization because of cyclic graph
+	@OneToMany(mappedBy="product", cascade=CascadeType.ALL, fetch=FetchType.EAGER)
+	@JsonIgnore
+	private List<CartItem> cartItemList;
+	
 	public String getProductManufacturer() {
 		return productManufacturer;
 	}
@@ -52,6 +72,8 @@ public class Product {
 	public void setProductStatus(String productStatus) {
 		this.productStatus = productStatus;
 	}
+	
+	
 	public String getProductCondition() {
 		return productCondition;
 	}
@@ -95,6 +117,12 @@ public class Product {
 	}
 	public void setProductImage(MultipartFile productImage) {
 		this.productImage = productImage;
+	}
+	public List<CartItem> getCartItemList() {
+		return cartItemList;
+	}
+	public void setCartItemList(List<CartItem> cartItemList) {
+		this.cartItemList = cartItemList;
 	}
 	
 }
